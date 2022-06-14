@@ -28,7 +28,7 @@ public class Controller {
 		String basicAuth = Base64.getEncoder().encodeToString(((client_id+':'+client_secret).getBytes()));
 
 		//Diretório em que seu certificado em formato .p12 deve ser inserido
-		System.setProperty("javax.net.ssl.keyStore", "C:\\Users\\Matheus Oliveira\\Downloads\\Certificado.p12");
+		System.setProperty("javax.net.ssl.keyStore", ".\\Certificado.p12");
 		SSLSocketFactory sslsocketfactory = (SSLSocketFactory) SSLSocketFactory.getDefault();
 
 		URL url = new URL ("https://api-pix.gerencianet.com.br/oauth/token"); //Para ambiente de Desenvolvimento
