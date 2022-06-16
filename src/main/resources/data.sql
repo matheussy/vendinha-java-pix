@@ -1,0 +1,2 @@
+INSERT INTO categoria(nome, img, descricao) VALUES ('AFF', 'Imagemdragons', 'AAAAAAAAAAAAAA');
+INSERT INTO produto (img, nome, descricao, categoria_nome, valor) VALUES ('ImagemKKJ', 'Teste1', 'AAAAAAAAAAAAA', 'AFF', 420.69);

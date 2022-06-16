@@ -1,28 +1,44 @@
 package br.com.vendaj.venda.controller;
 
 
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import br.com.vendaj.venda.models.Produto;
+import br.com.vendaj.venda.repositorys.ProdutoRepository;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
 
 import javax.net.ssl.HttpsURLConnection;
 import javax.net.ssl.SSLSocketFactory;
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.OutputStream;
+import java.io.*;
 import java.net.URL;
 import java.util.Base64;
+import java.util.List;
 
 @RestController
 public class Controller {
+
+
+	@Autowired
+	private ProdutoRepository produtoRepository;
 
 	@RequestMapping("/")
 	public String hello() {
 		return "hello";
 	}
 
+	@RequestMapping("/produtos")
+	public List<Produto> produtos() {
+		return produtoRepository.findAll();
+	}
+
+	@RequestMapping("/produto/{id}")
+	public Produto produto(@PathVariable int id) {
+		return produtoRepository.findById(id).orElseGet(Produto::new);
+	}
+
 	@RequestMapping("/pix")
-	public static String pixApi() throws IOException {
+	public static JsonNode pixApi() throws IOException {
 		String client_id = "Client_Id_21c3e0064df8b98b9831e31e3814c18670365c04";
 		String client_secret = "Client_Secret_cdfbc775333f8946905aacfd052eb459bf7ebf51";
 		String basicAuth = Base64.getEncoder().encodeToString(((client_id+':'+client_secret).getBytes()));
@@ -44,17 +60,11 @@ public class Controller {
 		os.write(input.getBytes());
 		os.flush();
 
-		InputStreamReader reader = new InputStreamReader(conn.getInputStream());
-		BufferedReader br = new BufferedReader(reader);
+		InputStream responseStream = conn.getInputStream();
+		ObjectMapper mapper = new ObjectMapper();
 
-		StringBuilder response = new StringBuilder();
-		for (String line = br.readLine(); line != null; line = br.readLine()) {
-			response.append(line);
-		}
-
-		conn.disconnect();
-		br.close();
-
- 		return response.toString();
+		return mapper.readValue(responseStream, JsonNode.class);
 	}
+
+
 }
