@@ -7,7 +7,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "categoria")
-public class Categoria {
+public class CategoriaModel {
 	@Id
 	@Column(name = "nome", nullable = false)
 	private String nome;

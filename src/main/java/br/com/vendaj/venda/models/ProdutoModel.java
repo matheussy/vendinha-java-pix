@@ -4,7 +4,7 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "produto")
-public class Produto {
+public class ProdutoModel {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id", nullable = false)
@@ -20,7 +20,7 @@ public class Produto {
 
 	private String img;
 
-	public Produto() {
+	public ProdutoModel() {
 	}
 
 	public String getCategoria() {

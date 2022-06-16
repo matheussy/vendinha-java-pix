@@ -1,7 +1,7 @@
 package br.com.vendaj.venda.controller;
 
 
-import br.com.vendaj.venda.models.Produto;
+import br.com.vendaj.venda.models.ProdutoModel;
 import br.com.vendaj.venda.repositorys.ProdutoRepository;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -28,13 +28,18 @@ public class Controller {
 	}
 
 	@RequestMapping("/produtos")
-	public List<Produto> produtos() {
+	public List<ProdutoModel> produtos() {
 		return produtoRepository.findAll();
 	}
 
 	@RequestMapping("/produto/{id}")
-	public Produto produto(@PathVariable int id) {
-		return produtoRepository.findById(id).orElseGet(Produto::new);
+	public ProdutoModel produto(@PathVariable int id) {
+		return produtoRepository.findById(id).orElseGet(ProdutoModel::new);
+	}
+
+	@RequestMapping("/produtos/categoria/{categoria}")
+	public List<ProdutoModel> produtosCategoria(@PathVariable String categoria) {
+		return produtoRepository.getByCategory(categoria);
 	}
 
 	@RequestMapping("/pix")
