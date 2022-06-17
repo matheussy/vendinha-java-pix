@@ -10,8 +10,6 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface ProdutoRepository extends JpaRepository<ProdutoModel, Integer> {
-	@Query(value = "select p from ProdutoModel p where p.categoria = :categoria")
-	List<ProdutoModel> getByCategory(@Param("categoria") CategoriaModel categoria);
-
+public interface CategoriaRepository extends JpaRepository<CategoriaModel, String> {
 }
+

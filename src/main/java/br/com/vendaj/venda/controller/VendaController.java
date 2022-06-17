@@ -2,6 +2,7 @@ package br.com.vendaj.venda.controller;
 
 
 import br.com.vendaj.venda.dto.ProdutoDto;
+import br.com.vendaj.venda.repositorys.CategoriaRepository;
 import br.com.vendaj.venda.repositorys.ProdutoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -13,6 +14,9 @@ public class VendaController {
 
 	@Autowired
 	private ProdutoRepository produtoRepository;
+
+	@Autowired
+	private CategoriaRepository categoriaRepository;
 
 	@RequestMapping("/")
 	public String hello() {
@@ -31,6 +35,6 @@ public class VendaController {
 
 	@RequestMapping("/produtos/categoria/{categoria}")
 	public List<ProdutoDto> produtosCategoria(@PathVariable String categoria) {
-		return ProdutoDto.getProdutosDto(produtoRepository.getByCategory(categoria));
+		return ProdutoDto.getProdutosDto(produtoRepository.getByCategory(categoriaRepository.findById(categoria).orElseThrow()));
 	}
 }
