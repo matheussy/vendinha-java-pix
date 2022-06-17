@@ -37,4 +37,9 @@ public class VendaController {
 	public List<ProdutoDto> produtosCategoria(@PathVariable String categoria) {
 		return ProdutoDto.getProdutosDto(produtoRepository.getByCategory(categoriaRepository.findById(categoria).orElseThrow()));
 	}
+
+	@RequestMapping("/produto/img/{id}")
+	public String getProdutoImg(@PathVariable int id) {
+		return produtoRepository.getImg(id);
+	}
 }
