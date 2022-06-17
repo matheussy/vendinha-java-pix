@@ -16,18 +16,20 @@ public class ProdutoModel {
 
 	private String descricao;
 
-	private String categoria;
+	@ManyToOne
+	@JoinColumn(name = "categoria_nome")
+	private CategoriaModel categoria;
 
 	private String img;
 
 	public ProdutoModel() {
 	}
 
-	public String getCategoria() {
+	public CategoriaModel getCategoria() {
 		return categoria;
 	}
 
-	public void setCategoria(String categoria) {
+	public void setCategoria(CategoriaModel categoria) {
 		this.categoria = categoria;
 	}
 

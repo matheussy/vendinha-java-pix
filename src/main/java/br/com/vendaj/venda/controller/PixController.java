@@ -1,48 +1,23 @@
 package br.com.vendaj.venda.controller;
 
-
-import br.com.vendaj.venda.models.ProdutoModel;
-import br.com.vendaj.venda.repositorys.ProdutoRepository;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.mifmif.common.regex.Generex;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import javax.net.ssl.HttpsURLConnection;
 import javax.net.ssl.SSLSocketFactory;
-import java.io.*;
+import java.io.IOException;
+import java.io.OutputStream;
 import java.net.URL;
 import java.util.Base64;
-import java.util.List;
+
 
 @RestController
-public class Controller {
-
+public class PixController {
 
 	private static final String urlApi = "https://api-pix.gerencianet.com.br/"; //Para ambiente de Desenvolvimento
-	@Autowired
-	private ProdutoRepository produtoRepository;
-
-	@RequestMapping("/")
-	public String hello() {
-		return "hello";
-	}
-
-	@RequestMapping("/produtos")
-	public List<ProdutoModel> produtos() {
-		return produtoRepository.findAll();
-	}
-
-	@RequestMapping("/produto/{id}")
-	public ProdutoModel produto(@PathVariable int id) {
-		return produtoRepository.findById(id).orElseGet(ProdutoModel::new);
-	}
-
-	@RequestMapping("/produtos/categoria/{categoria}")
-	public List<ProdutoModel> produtosCategoria(@PathVariable String categoria) {
-		return produtoRepository.getByCategory(categoria);
-	}
 
 	@RequestMapping("/pixToken")
 	public static JsonNode pixToken() throws IOException {
@@ -105,6 +80,5 @@ public class Controller {
 
 		return new ObjectMapper().readValue(conn.getInputStream(), JsonNode.class);
 	}
-
 
 }
