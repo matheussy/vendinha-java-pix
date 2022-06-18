@@ -49,6 +49,7 @@
             <artifactId>generex</artifactId>
             <version>1.0.2</version>
         </dependency>
+
         <dependency>
             <groupId>br.com.gerencianet.gnsdk</groupId>
             <artifactId>gn-api-sdk-java</artifactId>
