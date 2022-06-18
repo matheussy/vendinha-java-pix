@@ -2,6 +2,7 @@ package br.com.vendaj.venda.controller;
 
 
 import br.com.vendaj.venda.dto.ProdutoDto;
+import br.com.vendaj.venda.models.CategoriaModel;
 import br.com.vendaj.venda.repositorys.CategoriaRepository;
 import br.com.vendaj.venda.repositorys.ProdutoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,17 +29,22 @@ public class VendaController {
 		return ProdutoDto.getProdutosDto(produtoRepository.findAll());
 	}
 
-	@RequestMapping("/produto/{id}")
+	@RequestMapping("/categorias")
+	public List<CategoriaModel> categorias() {
+		return categoriaRepository.findAll();
+	}
+
+	@RequestMapping("/produtos/{id}")
 	public ProdutoDto produto(@PathVariable int id) {
 		return new ProdutoDto(produtoRepository.findById(id).orElseThrow());
 	}
 
-	@RequestMapping("/produtos/categoria/{categoria}")
+	@RequestMapping("/categorias/{categoria}")
 	public List<ProdutoDto> produtosCategoria(@PathVariable String categoria) {
 		return ProdutoDto.getProdutosDto(produtoRepository.getByCategory(categoriaRepository.findById(categoria).orElseThrow()));
 	}
 
-	@RequestMapping("/produto/img/{id}")
+	@RequestMapping("/produtos/img/{id}")
 	public String getProdutoImg(@PathVariable int id) {
 		return produtoRepository.getImg(id);
 	}
