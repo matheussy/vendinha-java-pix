@@ -3,10 +3,8 @@ package br.com.vendaj.venda.controller;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import java.io.DataInput;
 import java.io.FileReader;
 import java.io.IOException;
-import java.io.InputStream;
 
 public class CredetialsPixController {
 
