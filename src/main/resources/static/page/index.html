@@ -1,0 +1,30 @@
+<html>
+    <head>
+        <title>Data de JSON</title>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    </head>
+    <body>
+        <h1>Data de JSON</h1>
+
+        <p id="DataTeste"></p>
+        <p id="DataTeste2"></p>
+        <p id="DataTeste3"></p>
+
+        <a href="categorias.html">Categorias</a>
+        <br><br>
+        <a href="produtos.html">Produtos</a>
+        
+        <script type="text/javascript">
+            var json = '[{"ID": 1,"IMG": "IMAGEM1","Nome":"Teste","Descricao": "1AAAAAAAAAAAAAAAAAAA"},{"ID": 2,"IMG": "IMAGEM2","Nome":"Teste2","Descricao": "2AAAAAAAAAAAAAAAAAAA"},{"ID": 3,"IMG": "IMAGEM3","Nome":"Teste3","Descricao": "3AAAAAAAAAAAAAAAAAAA"},{"ID": 4,"IMG": "IMAGEM4","Nome":"Teste4","Descricao": "4AAAAAAAAAAAAAAAAAAA"}]';
+            var jsonObject = JSON.parse(json);
+
+            //alert(jsonObject);
+
+            for (var obj in jsonObject){
+                //alert(obj.ID + " - "+ obj.Nome);
+            }
+            //document.getElementById("DataTeste").innerHTML = obj.employees[1].firstName + " " + obj.employees[1].lastName;
+
+        </script>
+    </body>
+</html>

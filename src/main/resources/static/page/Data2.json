@@ -1,0 +1,34 @@
+[
+    {
+        "ID": 1,
+        "IMG": "IMAGEM1",
+        "Nome":"Teste",
+        "Descricao": "1AAAAAAAAAAAAAAAAAAA",
+        "Categoria": "BBBB",
+        "Preco": 10.00
+    },
+    {
+        "ID": 2,
+        "IMG": "IMAGEM2",
+        "Nome":"Teste2",
+        "Descricao": "2AAAAAAAAAAAAAAAAAAA",
+        "Categoria": "BBBB",
+        "Preco": 20.00
+    },
+    {
+        "ID": 3,
+        "IMG": "IMAGEM3",
+        "Nome":"Teste3",
+        "Descricao": "3AAAAAAAAAAAAAAAAAAA",
+        "Categoria": "BBBB",
+        "Preco": 69.69
+    },
+    {
+        "ID": 4,
+        "IMG": "IMAGEM4",
+        "Nome":"Teste4",
+        "Descricao": "4AAAAAAAAAAAAAAAAAAA",
+        "Categoria": "BBBB",
+        "Preco": 30.10
+    }
+]

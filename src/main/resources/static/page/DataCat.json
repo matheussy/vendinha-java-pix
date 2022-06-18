@@ -1,0 +1,22 @@
+[
+    {
+        "Nome":"CategoriaTeste",
+        "IMG": "IMAGEM1",
+        "Descricao": "1AAAAAAAAAAAAAAAAAAA"
+    },
+    {
+        "Nome":"CategoriaTeste2",
+        "IMG": "IMAGEM2",
+        "Descricao": "2AAAAAAAAAAAA"
+    },
+    {
+        "Nome":"CategoriaTeste3",
+        "IMG": "IMAGEM3",
+        "Descricao": "3AAAAAAAAAA"
+    },
+    {
+        "Nome":"CategoriaTeste4",
+        "IMG": "IMAGEM4",
+        "Descricao": "4AAAAAAAAAAAAAAAAAAAAAA"
+    }
+]
