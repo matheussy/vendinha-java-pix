@@ -63,7 +63,6 @@ public class PixController {
 		options.put("pix_cert", credentials.getCertificateP12());
 		options.put("sandbox", credentials.isSandBox());
 
-
 		JSONObject body = new JSONObject();
 		body.put("calendario", new JSONObject().put("expiracao", 3600));
 		body.put("valor", new JSONObject().put("original", Double.toString(valor)));
@@ -105,7 +104,6 @@ public class PixController {
 			Gerencianet gn = new Gerencianet(options2);
 			Map<String, Object> response2 = gn.call("pixGenerateQRCode", params, new HashMap<>());
 			return ((String) response2.get("imagemQrcode")).split(",")[1];
-
 		} catch (GerencianetException e) {
 			System.out.println(e.getError());
 			System.out.println(e.getErrorDescription());
