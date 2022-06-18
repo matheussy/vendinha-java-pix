@@ -66,7 +66,6 @@ public class PixController {
 
 		JSONObject body = new JSONObject();
 		body.put("calendario", new JSONObject().put("expiracao", 3600));
-		body.put("devedor", new JSONObject().put("cpf", "94271564656").put("nome", "Gorbadoc Oldbuck"));
 		body.put("valor", new JSONObject().put("original", Double.toString(valor)));
 		body.put("chave", "0952e433-ec5d-49ed-a108-ac979f527683");
 		body.put("solicitacaoPagador", "Serviço realizado.");
