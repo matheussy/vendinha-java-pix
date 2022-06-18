@@ -6,6 +6,7 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.json.JSONArray;
 import org.json.JSONObject;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -16,6 +17,7 @@ import java.io.OutputStream;
 import java.net.URL;
 import java.util.Base64;
 import java.util.HashMap;
+import java.util.Map;
 
 
 @RestController
@@ -51,8 +53,8 @@ public class PixController {
 		return new ObjectMapper().readValue(conn.getInputStream(), JsonNode.class);
 	}
 
-	@RequestMapping("/pix")
-	public static JsonNode pix() throws IOException {
+	@RequestMapping("/pix/{valor}")
+	public static String pix(@PathVariable double valor) throws IOException {
 		CredetialsPixController credentials = new CredetialsPixController();
 
 		JSONObject options = new JSONObject();
@@ -65,7 +67,7 @@ public class PixController {
 		JSONObject body = new JSONObject();
 		body.put("calendario", new JSONObject().put("expiracao", 3600));
 		body.put("devedor", new JSONObject().put("cpf", "94271564656").put("nome", "Gorbadoc Oldbuck"));
-		body.put("valor", new JSONObject().put("original", "0.01"));
+		body.put("valor", new JSONObject().put("original", Double.toString(valor)));
 		body.put("chave", "0952e433-ec5d-49ed-a108-ac979f527683");
 		body.put("solicitacaoPagador", "Serviço realizado.");
 
@@ -74,18 +76,45 @@ public class PixController {
 		infoAdicionais.put(new JSONObject().put("nome", "Campo 2").put("valor", "Informação Adicional2 do PSP-Recebedor"));
 		body.put("infoAdicionais", infoAdicionais);
 
+		JSONObject response = null;
 		try {
 			Gerencianet gn = new Gerencianet(options);
-			JSONObject response = gn.call("pixCreateImmediateCharge", new HashMap<String, String>(), body);
+			response = gn.call("pixCreateImmediateCharge", new HashMap<String, String>(), body);
+			if (response == null) {
+				throw new Exception();
+			}
 			System.out.println(response);
 		} catch (GerencianetException e) {
 			System.out.println(e.getError());
 			System.out.println(e.getErrorDescription());
+			return null;
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
+			return null;
 		}
 
-		return null;
+		HashMap<String, Object> options2 = new HashMap<String, Object>();
+		options2.put("client_id", credentials.getClientId());
+		options2.put("client_secret", credentials.getClientSecret());
+		options2.put("pix_cert", credentials.getCertificateP12());
+		options2.put("sandbox", credentials.isSandBox());
+
+		HashMap<String, String> params = new HashMap<String, String>();
+		params.put("id", response.getJSONObject("loc").get("id").toString());
+
+		try {
+			Gerencianet gn = new Gerencianet(options2);
+			Map<String, Object> response2 = gn.call("pixGenerateQRCode", params, new HashMap<String, Object>());
+			return ((String) response2.get("imagemQrcode")).split(",")[1];
+
+		} catch (GerencianetException e) {
+			System.out.println(e.getError());
+			System.out.println(e.getErrorDescription());
+			return null;
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+			return null;
+		}
 	}
 
 }
