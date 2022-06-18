@@ -13,6 +13,7 @@ public class CredetialsPixController {
 	private String clientId;
 	private String clientSecret;
 	private String certificateP12;
+	private String pixKey;
 	private boolean sandBox;
 	private boolean debug;
 
@@ -37,6 +38,7 @@ public class CredetialsPixController {
 		this.clientId = credentials.get("client_id").asText();
 		this.clientSecret = credentials.get("client_secret").asText();
 		this.certificateP12 = credentials.get("pix_cert").asText();
+		this.pixKey = credentials.get("pix_key").asText();
 		this.sandBox = Boolean.parseBoolean(credentials.get("sandbox").asText());
 		this.debug = Boolean.parseBoolean(credentials.get("debug").asText());
 	}
@@ -63,6 +65,14 @@ public class CredetialsPixController {
 
 	public String getCertificateP12() {
 		return certificateP12;
+	}
+
+	public String getPixKey() {
+		return pixKey;
+	}
+
+	public void setPixKey(String pixKey) {
+		this.pixKey = pixKey;
 	}
 
 	public void setCertificateP12(String certificateP12) {

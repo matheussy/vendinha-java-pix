@@ -67,7 +67,7 @@ public class PixController {
 		JSONObject body = new JSONObject();
 		body.put("calendario", new JSONObject().put("expiracao", 3600));
 		body.put("valor", new JSONObject().put("original", Double.toString(valor)));
-		body.put("chave", "0952e433-ec5d-49ed-a108-ac979f527683");
+		body.put("chave", credentials.getPixKey());
 		body.put("solicitacaoPagador", "Serviço realizado.");
 
 		JSONArray infoAdicionais = new JSONArray();
