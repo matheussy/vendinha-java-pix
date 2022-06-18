@@ -76,10 +76,10 @@ public class PixController {
 		infoAdicionais.put(new JSONObject().put("nome", "Campo 2").put("valor", "Informação Adicional2 do PSP-Recebedor"));
 		body.put("infoAdicionais", infoAdicionais);
 
-		JSONObject response = null;
+		JSONObject response;
 		try {
 			Gerencianet gn = new Gerencianet(options);
-			response = gn.call("pixCreateImmediateCharge", new HashMap<String, String>(), body);
+			response = gn.call("pixCreateImmediateCharge", new HashMap<>(), body);
 			if (response == null) {
 				throw new Exception();
 			}
@@ -93,18 +93,18 @@ public class PixController {
 			return null;
 		}
 
-		HashMap<String, Object> options2 = new HashMap<String, Object>();
+		HashMap<String, Object> options2 = new HashMap<>();
 		options2.put("client_id", credentials.getClientId());
 		options2.put("client_secret", credentials.getClientSecret());
 		options2.put("pix_cert", credentials.getCertificateP12());
 		options2.put("sandbox", credentials.isSandBox());
 
-		HashMap<String, String> params = new HashMap<String, String>();
+		HashMap<String, String> params = new HashMap<>();
 		params.put("id", response.getJSONObject("loc").get("id").toString());
 
 		try {
 			Gerencianet gn = new Gerencianet(options2);
-			Map<String, Object> response2 = gn.call("pixGenerateQRCode", params, new HashMap<String, Object>());
+			Map<String, Object> response2 = gn.call("pixGenerateQRCode", params, new HashMap<>());
 			return ((String) response2.get("imagemQrcode")).split(",")[1];
 
 		} catch (GerencianetException e) {
