@@ -27,7 +27,7 @@ public class PixController {
 
 	@RequestMapping("/pixToken")
 	public static JsonNode pixToken() throws IOException {
-		CredetialsPixController credentials = new CredetialsPixController();
+		CredentialsPixController credentials = new CredentialsPixController();
 
 		String client_id = credentials.getClientId();
 		String client_secret = credentials.getClientSecret();
@@ -55,7 +55,7 @@ public class PixController {
 
 	@RequestMapping("/pix/{valor}")
 	public static String pix(@PathVariable double valor) throws IOException {
-		CredetialsPixController credentials = new CredetialsPixController();
+		CredentialsPixController credentials = new CredentialsPixController();
 
 		JSONObject options = new JSONObject();
 		options.put("client_id", credentials.getClientId());

@@ -6,7 +6,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import java.io.FileReader;
 import java.io.IOException;
 
-public class CredetialsPixController {
+public class CredentialsPixController {
 
 	private String clientId;
 	private String clientSecret;
@@ -15,16 +15,16 @@ public class CredetialsPixController {
 	private boolean sandBox;
 	private boolean debug;
 
-	private static CredetialsPixController instance;
+	private static CredentialsPixController instance;
 
-	public static CredetialsPixController gi() throws IOException {
+	public static CredentialsPixController gi() throws IOException {
 		if (instance == null) {
-			instance = new CredetialsPixController();
+			instance = new CredentialsPixController();
 		}
 		return instance;
 	}
 
-	public CredetialsPixController() throws IOException {
+	public CredentialsPixController() throws IOException {
 		FileReader credentialsFile = new FileReader(".\\credentials.json");
 		JsonNode credentials = new ObjectMapper().readValue(credentialsFile, JsonNode.class);
 		try {
@@ -42,7 +42,7 @@ public class CredetialsPixController {
 	}
 
 	public JsonNode jsonCredentials() throws IOException {
-		return new ObjectMapper().convertValue(CredetialsPixController.gi(), JsonNode.class);
+		return new ObjectMapper().convertValue(CredentialsPixController.gi(), JsonNode.class);
 	}
 
 	public String getClientId() {
