@@ -68,11 +68,11 @@ public class ProdutoDto {
 	}
 
 	public ProdutoDto(ProdutoModel produtoModel) {
-		this.id = produtoModel.getId();
+		this.id = produtoModel.getID();
 		this.nome = produtoModel.getNome();
 		this.descricao = produtoModel.getDescricao();
 		this.img = produtoModel.getImg();
-		this.valor = produtoModel.getValor();
+		this.valor = produtoModel.getPreco();
 		this.categoria = produtoModel.getCategoria().getNome();
 	}
 

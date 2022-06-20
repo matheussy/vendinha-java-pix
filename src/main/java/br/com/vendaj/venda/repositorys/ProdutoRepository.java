@@ -11,7 +11,7 @@ import java.util.List;
 
 @Repository
 public interface ProdutoRepository extends JpaRepository<ProdutoModel, Integer> {
-	@Query("select p from ProdutoModel p where p.categoria = :categoria")
+	@Query("select p from ProdutoModel p where p.Categoria = :categoria")
 	List<ProdutoModel> getByCategory(@Param("categoria") CategoriaModel categoria);
 
 	@Query("select p.img from ProdutoModel p where p.id = :id")

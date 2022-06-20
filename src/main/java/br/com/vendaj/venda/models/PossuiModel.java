@@ -1,7 +1,6 @@
 package br.com.vendaj.venda.models;
 
 import javax.persistence.*;
-import java.util.List;
 
 @Entity
 @Table(name = "possui")
@@ -20,7 +19,7 @@ public class PossuiModel {
 	@JoinColumn(name = "venda_id")
 	private VendaModel venda;
 
-	private int quantidade;
+	private int Qtd;
 
 	public VendaModel getVenda() {
 		return venda;
@@ -46,11 +45,11 @@ public class PossuiModel {
 		this.id = id;
 	}
 
-	public int getQuantidade() {
-		return quantidade;
+	public int getQtd() {
+		return Qtd;
 	}
 
-	public void setQuantidade(int quantidade) {
-		this.quantidade = quantidade;
+	public void setQtd(int qtd) {
+		this.Qtd = qtd;
 	}
 }

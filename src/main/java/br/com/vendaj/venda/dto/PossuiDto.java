@@ -1,7 +1,6 @@
 package br.com.vendaj.venda.dto;
 
 import br.com.vendaj.venda.models.PossuiModel;
-import br.com.vendaj.venda.models.ProdutoModel;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -50,9 +49,9 @@ public class PossuiDto {
 
 	public PossuiDto(PossuiModel possuiModel) {
 		this.id = possuiModel.getId();
-		this.produto = possuiModel.getProduto().getId();
+		this.produto = possuiModel.getProduto().getID();
 		this.venda = possuiModel.getVenda().getId();
-		this.quantidade = possuiModel.getQuantidade();
+		this.quantidade = possuiModel.getQtd();
 	}
 
 	public static List<PossuiDto> getProdutosDto (List<PossuiModel> possui) {
