@@ -7,73 +7,73 @@ import java.util.stream.Collectors;
 
 public class ProdutoDto {
 
-	private Integer id;
+	private Integer ID;
 
-	private String nome;
+	private String Nome;
 
-	private double valor;
+	private double Preco;
 
-	private String descricao;
+	private String Descricao;
 
-	private String categoria;
+	private String Categoria;
 
-	private String img;
+	private String IMG;
 
-	public Integer getId() {
-		return id;
+	public Integer getID() {
+		return ID;
 	}
 
-	public void setId(Integer id) {
-		this.id = id;
+	public void setID(Integer ID) {
+		this.ID = ID;
 	}
 
 	public String getNome() {
-		return nome;
+		return Nome;
 	}
 
 	public void setNome(String nome) {
-		this.nome = nome;
+		this.Nome = nome;
 	}
 
-	public double getValor() {
-		return valor;
+	public double getPreco() {
+		return Preco;
 	}
 
-	public void setValor(double valor) {
-		this.valor = valor;
+	public void setPreco(double preco) {
+		this.Preco = preco;
 	}
 
 	public String getDescricao() {
-		return descricao;
+		return Descricao;
 	}
 
 	public void setDescricao(String descricao) {
-		this.descricao = descricao;
+		this.Descricao = descricao;
 	}
 
 	public String getCategoria() {
-		return categoria;
+		return Categoria;
 	}
 
 	public void setCategoria(String categoria) {
-		this.categoria = categoria;
+		this.Categoria = categoria;
 	}
 
-	public String getImg() {
-		return img;
+	public String getIMG() {
+		return IMG;
 	}
 
-	public void setImg(String img) {
-		this.img = img;
+	public void setIMG(String IMG) {
+		this.IMG = IMG;
 	}
 
 	public ProdutoDto(ProdutoModel produtoModel) {
-		this.id = produtoModel.getID();
-		this.nome = produtoModel.getNome();
-		this.descricao = produtoModel.getDescricao();
-		this.img = produtoModel.getImg();
-		this.valor = produtoModel.getPreco();
-		this.categoria = produtoModel.getCategoria().getNome();
+		this.ID = produtoModel.getID();
+		this.Nome = produtoModel.getNome();
+		this.Descricao = produtoModel.getDescricao();
+		this.IMG = produtoModel.getImg();
+		this.Preco = produtoModel.getPreco();
+		this.Categoria = produtoModel.getCategoria().getNome();
 	}
 
 	public static List<ProdutoDto> getProdutosDto (List<ProdutoModel> produtos) {
