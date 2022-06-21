@@ -49,7 +49,7 @@ public class PossuiDto {
 
 	public PossuiDto(PossuiModel possuiModel) {
 		this.id = possuiModel.getId();
-		this.produto = possuiModel.getProduto().getID();
+		this.produto = possuiModel.getProduto().getId();
 		this.venda = possuiModel.getVenda().getId();
 		this.quantidade = possuiModel.getQtd();
 	}

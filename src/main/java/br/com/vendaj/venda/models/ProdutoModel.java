@@ -8,17 +8,17 @@ public class ProdutoModel {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "ID", nullable = false)
-	private Integer ID;
+	private Integer id;
 
-	private String Nome;
+	private String nome;
 
-	private double Preco;
+	private double preco;
 
-	private String Descricao;
+	private String descricao;
 
 	@ManyToOne
 	@JoinColumn(name = "categoria_nome")
-	private CategoriaModel Categoria;
+	private CategoriaModel categoria;
 
 	private String img;
 
@@ -26,43 +26,43 @@ public class ProdutoModel {
 	}
 
 	public CategoriaModel getCategoria() {
-		return Categoria;
+		return categoria;
 	}
 
 	public void setCategoria(CategoriaModel categoria) {
-		this.Categoria = categoria;
+		this.categoria = categoria;
 	}
 
-	public Integer getID() {
-		return ID;
+	public Integer getId() {
+		return id;
 	}
 
-	public void setID(Integer ID) {
-		this.ID = ID;
+	public void setId(Integer id) {
+		this.id = id;
 	}
 
 	public String getNome() {
-		return Nome;
+		return nome;
 	}
 
 	public void setNome(String nome) {
-		this.Nome = nome;
+		this.nome = nome;
 	}
 
 	public double getPreco() {
-		return Preco;
+		return preco;
 	}
 
 	public void setPreco(double preco) {
-		this.Preco = preco;
+		this.preco = preco;
 	}
 
 	public String getDescricao() {
-		return Descricao;
+		return descricao;
 	}
 
 	public void setDescricao(String descricao) {
-		this.Descricao = descricao;
+		this.descricao = descricao;
 	}
 
 	public String getImg() {
