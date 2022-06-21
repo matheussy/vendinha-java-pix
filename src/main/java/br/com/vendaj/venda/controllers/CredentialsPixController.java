@@ -1,4 +1,4 @@
-package br.com.vendaj.venda.controller;
+package br.com.vendaj.venda.controllers;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;

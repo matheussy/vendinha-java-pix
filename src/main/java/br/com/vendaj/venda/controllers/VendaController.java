@@ -1,4 +1,4 @@
-package br.com.vendaj.venda.controller;
+package br.com.vendaj.venda.controllers;
 
 
 import br.com.gerencianet.gnsdk.Gerencianet;
