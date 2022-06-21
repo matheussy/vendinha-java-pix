@@ -66,9 +66,13 @@ public class VendaController {
 		options.put("pix_cert", credentials.getCertificateP12());
 		options.put("sandbox", credentials.isSandBox());
 
+		String[] split = Double.toString(valor).split("\\.");
+		String rawValue = split[split.length - 1];
+		String value = rawValue.length() < 2 ? valor + "0" : Double.toString(valor);
+
 		JSONObject body = new JSONObject();
 		body.put("calendario", new JSONObject().put("expiracao", 3600));
-		body.put("valor", new JSONObject().put("original", Double.toString(valor)));
+		body.put("valor", new JSONObject().put("original", value));
 		body.put("chave", credentials.getPixKey());
 		body.put("solicitacaoPagador", "Serviço realizado.");
 
