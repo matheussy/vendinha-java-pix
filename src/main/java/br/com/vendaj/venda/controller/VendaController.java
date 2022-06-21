@@ -84,7 +84,6 @@ public class VendaController {
 			if (response == null) {
 				throw new Exception();
 			}
-			System.out.println(response);
 		} catch (GerencianetException e) {
 			System.out.println(e.getError());
 			System.out.println(e.getErrorDescription());
