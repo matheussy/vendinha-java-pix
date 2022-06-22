@@ -67,8 +67,8 @@ public class VendaController {
 		options.put("sandbox", credentials.isSandBox());
 
 		String[] split = Double.toString(valor).split("\\.");
-		String rawValue = split[split.length - 1];
-		String value = rawValue.length() < 2 ? valor + "0" : Double.toString(valor);
+		boolean valueLengthIsOk = split[split.length - 1].length() == 2;
+		String value = !valueLengthIsOk ? valor + "0" : Double.toString(valor);
 
 		JSONObject body = new JSONObject();
 		body.put("calendario", new JSONObject().put("expiracao", 3600));
@@ -76,38 +76,16 @@ public class VendaController {
 		body.put("chave", credentials.getPixKey());
 		body.put("solicitacaoPagador", "Serviço realizado.");
 
-		JSONArray infoAdicionais = new JSONArray();
-		infoAdicionais.put(new JSONObject().put("nome", "Campo 1").put("valor", "Informação Adicional1 do PSP-Recebedor"));
-		infoAdicionais.put(new JSONObject().put("nome", "Campo 2").put("valor", "Informação Adicional2 do PSP-Recebedor"));
-		body.put("infoAdicionais", infoAdicionais);
-
-		JSONObject response;
 		try {
 			Gerencianet gn = new Gerencianet(options);
-			response = gn.call("pixCreateImmediateCharge", new HashMap<>(), body);
+			JSONObject response = gn.call("pixCreateImmediateCharge", new HashMap<>(), body);
 			if (response == null) {
 				throw new Exception();
 			}
-		} catch (GerencianetException e) {
-			System.out.println(e.getError());
-			System.out.println(e.getErrorDescription());
-			return null;
-		} catch (Exception e) {
-			System.out.println(e.getMessage());
-			return null;
-		}
 
-		HashMap<String, Object> options2 = new HashMap<>();
-		options2.put("client_id", credentials.getClientId());
-		options2.put("client_secret", credentials.getClientSecret());
-		options2.put("pix_cert", credentials.getCertificateP12());
-		options2.put("sandbox", credentials.isSandBox());
+			HashMap<String, String> params = new HashMap<>();
+			params.put("id", response.getJSONObject("loc").get("id").toString());
 
-		HashMap<String, String> params = new HashMap<>();
-		params.put("id", response.getJSONObject("loc").get("id").toString());
-
-		try {
-			Gerencianet gn = new Gerencianet(options2);
 			Map<String, Object> response2 = gn.call("pixGenerateQRCode", params, new HashMap<>());
 			return ((String) response2.get("imagemQrcode")).split(",")[1];
 		} catch (GerencianetException e) {
